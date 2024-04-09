@@ -1,0 +1,11 @@
+name: broken
+on: 
+  - push
+jobs:
+  broken:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo '{"dependencies": {"@antfu/eslint-config": "2.13.2", "eslint": "9.0.0"}}' > package.json
+          yarn install
+          node -e 'const { default: foo } = require("@antfu/eslint-config")';
